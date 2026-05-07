@@ -1,15 +1,9 @@
 :root {
-    --bg-app: #1e1e1e; /* Preto VS Code profundo */
-    --bg-sidebar: #252526; /* Cinza VS Code */
-    --bg-tabbar: #2d2d2d;
-    --text-main: #d4d4d4;
-    --keyword: #569cd6; /* Azul VS Code */
-    --string: #ce9178; /* Laranja Cozy */
-    --comment: #6a9955; /* Verde VS Code */
-    --accent: #8b5a2b; /* Marrom Cozy Zelda */
+    --bg-night: #0a0a1a;
+    --text-fairy: #fefae0;
+    --font-painted: 'Courier New', Courier, monospace;
 }
 
-/* Redefinição Básica e Ocupação de Tela Completa */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,114 +11,103 @@
 }
 
 body {
-    background-color: var(--bg-app);
-    color: var(--text-main);
-    font-family: 'Consolas', 'Courier New', monospace; /* Fonte do terminal */
+    background-color: var(--bg-night);
+    color: var(--text-fairy);
+    font-family: var(--font-painted);
     height: 100vh;
-    overflow: hidden; /* Impede a barra de rolagem global */
+    overflow: hidden;
+    user-select: none;
 }
 
-/* Contêiner do Layout */
-.app-container {
-    display: flex;
+/* O Grande Contêiner com Fundo Noturno */
+.beyond-time-container {
+    background-image: url('fundo_noturno.jpg'); /* COLOCA A TUA IMAGEM AQUI */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 100%;
     width: 100%;
+    position: relative;
+    display: flex;
 }
 
-/* Menu Lateral Fixado */
-.sidebar {
+/* UI Fixa: Logotipo e Menu */
+.ui-fixed {
+    position: absolute;
+    top: 50px;
+    left: 80px;
+    z-index: 20;
     width: 250px;
-    height: 100%;
-    background-color: var(--bg-sidebar);
-    border-right: 1px solid #333;
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
-    z-index: 10; /* Fica acima de tudo */
 }
 
-.sidebar p {
-    font-size: 11px;
-    color: #888;
-    padding: 0 15px;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+.logo-area {
+    margin-bottom: 30px;
+    opacity: 0.8;
 }
 
-/* Área de Conteúdo da Direita */
-.content-viewport {
-    flex: 1; /* Ocupa o resto do espaço */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Confronte barra de rolagem */
+.logo-small { font-size: 14px; display: block; }
+.logo-large { font-size: 32px; font-weight: bold; letter-spacing: 2px; }
+
+/* O Menu Principal */
+.main-menu ul {
+    list-style: none;
 }
 
-/* Barra de Abas (Tab Bar) */
-.tab-bar {
-    height: 35px;
-    background-color: var(--bg-tabbar);
-    color: #999;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    border-bottom: 1px solid #333;
-}
-
-/* Área de Código (Onde as páginas aparecem) */
-.code-area {
-    flex: 1;
-    padding: 40px;
-    overflow-y: auto; /* Adiciona barra de rolagem apenas aqui se o texto for grande */
-    background-color: var(--bg-app);
-}
-
-/* Botões da Sidebar (Estilo Arquivo) */
-.file-btn {
+.nav-btn {
     background: none;
     border: none;
-    color: var(--text-main);
-    width: 100%;
-    text-align: left;
-    padding: 8px 20px;
-    cursor: pointer;
+    color: var(--text-fairy);
     font-family: inherit;
-    font-size: 13px;
-    transition: 0.2s;
+    font-size: 16px;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-transform: lowercase;
+    transition: 0.3s;
+    position: relative;
+    opacity: 0.7;
 }
 
-.file-btn:hover, .file-btn.active {
-    background-color: #333; /* Fundo suave */
-    color: var(--string); /* Laranja cozy no hover */
+.nav-btn:hover, .nav-btn.active {
+    opacity: 1;
+    text-shadow: 0 0 10px var(--text-fairy);
 }
 
-.file-btn.active {
-    border-left: 2px solid var(--accent); /* Barrinha Zelda marrom */
+.nav-btn.active::before {
+    content: '-';
+    position: absolute;
+    left: -10px;
+    color: var(--text-fairy);
 }
 
-/* Estilização Cozy para Código */
-.keyword { color: var(--keyword); font-weight: bold; }
-.string { color: var(--string); }
-.comment { color: var(--comment); font-style: italic; }
-
-.card {
-    background: rgba(139, 90, 43, 0.1); /* Marrom translúcido */
-    border-left: 4px solid var(--accent);
-    padding: 20px;
-    margin: 20px 0;
-    line-height: 1.6;
+/* Área de Conteúdo Dinâmico (As Páginas) */
+.viewport {
+    position: absolute;
+    top: 250px;
+    left: 80px;
+    z-index: 10;
+    width: 400px;
 }
 
-/* Canvas do Rastro (Overlay) */
+/* Lógica SPA e Animação de Entrada */
+.page-content {
+    display: none;
+    animation: fadeInPainted 0.8s ease;
+}
+
+.page-content.active {
+    display: block;
+}
+
+@keyframes fadeInPainted {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Canvas da Trilha do Mouse ( Overlay) */
 #trailCanvas {
     position: fixed;
     top: 0;
     left: 0;
-    pointer-events: none; /* Não atrapalha cliques */
-    z-index: 5; /* Entre o fundo e o texto */
+    pointer-events: none;
+    z-index: 5;
 }
-
-/* Lógica SPA: Esconder/Mostrar Páginas */
-.page { display: none; }
-.page.active { display: block; }

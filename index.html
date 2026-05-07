@@ -1,49 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Aniversário, Pai! | VS Code System</title>
+    <title>Aniversário do Pai | Além do Tempo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="app-container">
+    <div class="beyond-time-container">
         
-        <nav class="sidebar">
-            <p>EXPLORER</p>
-            <div class="nav-links">
-                <button onclick="navegar('home')" class="file-btn active" id="btn-home">index.html</button>
-                <button onclick="navegar('historia')" class="file-btn" id="btn-historia">historia.lore</button>
-                <button onclick="navegar('lembrancas')" class="file-btn" id="btn-lembrancas">lembrancas.log</button>
-                <button onclick="navegar('bencaos')" class="file-btn" id="btn-bencaos">bencaos.ccb</button>
-                <button onclick="navegar('carinho')" class="file-btn" id="btn-carinho">carinho.py</button>
+        <header class="ui-fixed">
+            <div class="logo-area">
+                <span class="logo-small">além do</span>
+                <span class="logo-large">TEMPO</span>
             </div>
-        </nav>
-
-        <main class="content-viewport">
-            <div class="tab-bar" id="tab-name">welcome_pai.py</div>
             
-            <div class="code-area">
-                <section id="home" class="page active">
-                    <h1><span class="keyword">print</span>(<span class="string">"Feliz Aniversário, Pai!"</span>)</h1>
-                    <div class="card">
-                        <p class="comment"># Inicializando sistema de gratidão...</p>
-                        <p>Bem-vindo ao seu repositório de vida. Use o menu lateral para explorar as memórias.</p>
-                    </div>
-                </section>
+            <nav class="main-menu">
+                <ul>
+                    <li><button onclick="navegar('home')" class="nav-btn active" id="btn-home">INÍCIO</button></li>
+                    <li><button onclick="navegar('historia')" class="nav-btn" id="btn-historia">HISTÓRIA</button></li>
+                    <li><button onclick="navegar('lembrancas')" class="nav-btn" id="btn-lembrancas">LEMBRANÇAS</button></li>
+                    <li><button onclick="navegar('carinho')" class="nav-btn" id="btn-carinho">CARINHO</button></li>
+                    <li><button onclick="navegar('bencaos')" class="nav-btn" id="btn-bencaos">BÊNÇÃOS</button></li>
+                </ul>
+                <div class="hourglass-symbol">X</div>
+            </nav>
+        </header>
 
-                <section id="historia" class="page">
-                    <h1><span class="keyword">class</span> <span class="string">JornadaDoHeroi</span>:</h1>
-                    <div class="card">
-                        <p><span class="keyword">def</span> __init__(self):</p>
-                        <p style="padding-left: 20px;">self.legado = "Honra e Fé"</p>
-                        <p style="padding-left: 20px;">self.missao = "Cuidar da Família"</p>
-                    </div>
-                </section>
+        <main class="viewport">
+            
+            <section id="home" class="page-content active">
+                <p class="comment">// STATUS: INICIADO</p>
+                <p>Pai, este site foi "codado" para celebrar a tua vida.</p>
+                <p>Navega pelas memórias no menu.</p>
+            </section>
 
-                </div>
-        </main>
+            </main>
     </div>
 
     <canvas id="trailCanvas"></canvas>
