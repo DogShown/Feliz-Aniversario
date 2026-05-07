@@ -7,39 +7,70 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <nav class="sidebar">
         <p>EXPLORER</p>
-        <a href="index.html" class="file active">index.html</a>
-        <a href="lembrancas.html" class="file">lembrancas.html</a>
-        <a href="bençaos.html" class="file">bencaos.html</a>
-        <a href="carinho.html" class="file">carinho.html</a>
+        <div class="nav-links">
+            <button onclick="navegar('home')" class="file-btn active" id="btn-home">index.html</button>
+            <button onclick="navegar('historia')" class="file-btn" id="btn-historia">historia.lore</button>
+            <button onclick="navegar('lembrancas')" class="file-btn" id="btn-lembrancas">lembrancas.log</button>
+            <button onclick="navegar('bencaos')" class="file-btn" id="btn-bencaos">bencaos.ccb</button>
+            <button onclick="navegar('carinho')" class="file-btn" id="btn-carinho">carinho.py</button>
+        </div>
     </nav>
 
     <main class="content">
-        <div class="tab-bar">welcome_pai.py</div>
+        <div class="tab-bar" id="tab-name">welcome_pai.py</div>
         
-        <section class="code-area">
-            <h1><span class="keyword">print</span>(<span class="string">"Feliz Aniversário, meu herói!"</span>)</h1>
-            
-            <div class="card">
-                <p class="comment"># Inicializando sistema de gratidão...</p>
-                <p>Pai, este site foi "codado" com todo o carinho para celebrar a sua vida. Navegue pelos arquivos ao lado para ver as surpresas que preparamos.</p>
-                <p>Que Deus em Sua infinita graça te abençoe hoje e sempre!</p>
-            </div>
+        <div class="code-area">
+            <section id="home" class="page active">
+                <h1><span class="keyword">print</span>(<span class="string">"Feliz Aniversário, Pai!"</span>)</h1>
+                <div class="card">
+                    <p class="comment"># Inicializando sistema de gratidão...</p>
+                    <p>Bem-vindo ao seu repositório de vida. Use o menu lateral para explorar as memórias.</p>
+                </div>
+            </section>
 
-            <p class="comment" style="margin-top: 20px;">// Clique em qualquer lugar para ativar a trilha sonora...</p>
-        </section>
+            <section id="historia" class="page">
+                <h1><span class="keyword">class</span> <span class="string">JornadaDoHeroi</span>:</h1>
+                <div class="card">
+                    <p><span class="keyword">def</span> __init__(self):</p>
+                    <p style="padding-left: 20px;">self.legado = "Honra e Fé"</p>
+                    <p style="padding-left: 20px;">self.missao = "Cuidar da Família"</p>
+                </div>
+            </section>
+
+            <section id="lembrancas" class="page">
+                <h1>📸 Arquivos de Memória</h1>
+                <div class="grid-fotos">
+                    <div class="foto-slot">Sua Foto 1</div>
+                    <div class="foto-slot">Sua Foto 2</div>
+                </div>
+            </section>
+
+            <section id="bencaos" class="page">
+                <h1>🙏 bencaos.ccb</h1>
+                <div class="card">
+                    <p class="string">"O Senhor te abençoe e te guarde."</p>
+                    <p class="comment">// Que a paz de Deus reine em seu coração.</p>
+                </div>
+            </section>
+
+            <section id="carinho" class="page">
+                <h1>❤️ carinho.py</h1>
+                <div class="card">
+                    <p><span class="keyword">while</span> Pai_Vivo:</p>
+                    <p style="padding-left: 20px;">amor_filho += 1</p>
+                    <p style="padding-left: 20px;"><span class="keyword">print</span>("Te amo!")</p>
+                </div>
+            </section>
+        </div>
     </main>
 
     <canvas id="trailCanvas"></canvas>
 
-    <audio id="musicaFundo" loop>
-        <source src="idoberg-cozy-lofi-beat-sunset-stars-253833.mp3" type="audio/mpeg">
-    </audio>
-
-    <audio id="somClique">
-        <source src="creatorshome-keyboard-click-327728.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="musicaFundo" loop src="idoberg-cozy-lofi-beat-sunset-stars-253833.mp3"></audio>
+    <audio id="somClique" src="creatorshome-keyboard-click-327728.mp3"></audio>
 
     <script src="script.js"></script>
 </body>
