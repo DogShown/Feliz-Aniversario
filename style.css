@@ -1,0 +1,110 @@
+:root {
+    --bg-dark: #1a1612;
+    --brown-primary: #4a3728;
+    --gold-soft: #c5a059;
+    --text-light: #eaddca;
+    --overlay-sepia: rgba(43, 30, 22, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Lora', serif;
+    overflow: hidden; /* Mantém a estética de "tela única" */
+    height: 100vh;
+}
+
+/* Fundo com Imagem e Filtro */
+.main-container {
+    height: 100vh;
+    background: linear-gradient(var(--overlay-sepia), var(--overlay-sepia)), 
+                url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 50px;
+}
+
+/* Efeito de Ruído/Grão */
+.grain-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Tipografia */
+.main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 8rem;
+    line-height: 0.8;
+    text-shadow: 2px 5px 15px rgba(0,0,0,0.7);
+}
+
+.sub-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    letter-spacing: 10px;
+    color: var(--gold-soft);
+}
+
+/* Menu de Jogo */
+.game-menu ul {
+    list-style: none;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+}
+
+.game-menu li {
+    font-size: 1.8rem;
+    margin: 20px 0;
+    padding: 10px 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: linear-gradient(90deg, rgba(197, 160, 89, 0) 0%, rgba(197, 160, 89, 0.1) 100%);
+}
+
+.game-menu li:hover, .game-menu li.active {
+    color: var(--gold-soft);
+    transform: translateX(10px);
+    background: linear-gradient(90deg, rgba(197, 160, 89, 0.2) 0%, rgba(197, 160, 89, 0) 100%);
+}
+
+.btn-icon {
+    border: 2px solid var(--text-light);
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    margin: 0 5px;
+}
+
+/* Citação Bíblica */
+.bible-quote {
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    max-width: 400px;
+    text-align: right;
+    font-style: italic;
+    opacity: 0.8;
+    border-right: 3px solid var(--gold-soft);
+    padding-right: 20px;
+}
+
+/* Canvas do Mouse */
+#trail-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 999;
+}
