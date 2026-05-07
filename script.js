@@ -61,6 +61,29 @@ function tocarSom() {
 // Exemplo: Aplicar a todos os botões do seu site
 document.querySelectorAll('button').forEach(botao => {
     botao.addEventListener('click', tocarSom);
+    // 1. Referenciar o áudio
+const musica = document.getElementById('musicaFundo');
+
+// 2. Função para tocar a música
+function iniciarMusica() {
+    musica.volume = 0.4; // Define o volume (0.0 a 1.0)
+    musica.play();
+    
+    // Remove o evento após tocar a primeira vez para não reiniciar sempre
+    document.removeEventListener('click', iniciarMusica);
+}
+
+// 3. Tocar quando o usuário clicar em qualquer parte do site
+document.addEventListener('click', iniciarMusica);
+// Seleciona o áudio e todos os botões
+const audioClique = document.getElementById('somClique');
+
+document.querySelectorAll('button').forEach(botao => {
+    botao.addEventListener('click', () => {
+        audioClique.currentTime = 0; // Reseta o som para tocar várias vezes seguidas
+        audioClique.play();          // Toca o som
+    });
+});
 });
 }
 animate();
