@@ -1,34 +1,130 @@
-/* Esconde todas as seções por padrão */
-.page {
-    display: none;
-    animation: fadeIn 0.4s ease-in-out;
+:root {
+    --bg-app: #1e1e1e; /* Preto VS Code profundo */
+    --bg-sidebar: #252526; /* Cinza VS Code */
+    --bg-tabbar: #2d2d2d;
+    --text-main: #d4d4d4;
+    --keyword: #569cd6; /* Azul VS Code */
+    --string: #ce9178; /* Laranja Cozy */
+    --comment: #6a9955; /* Verde VS Code */
+    --accent: #8b5a2b; /* Marrom Cozy Zelda */
 }
 
-/* Mostra apenas a seção ativa */
-.page.active {
-    display: block;
+/* Redefinição Básica e Ocupação de Tela Completa */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
+body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    font-family: 'Consolas', 'Courier New', monospace; /* Fonte do terminal */
+    height: 100vh;
+    overflow: hidden; /* Impede a barra de rolagem global */
 }
 
-/* Estilo dos botões da sidebar para parecerem arquivos */
+/* Contêiner do Layout */
+.app-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* Menu Lateral Fixado */
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    z-index: 10; /* Fica acima de tudo */
+}
+
+.sidebar p {
+    font-size: 11px;
+    color: #888;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Área de Conteúdo da Direita */
+.content-viewport {
+    flex: 1; /* Ocupa o resto do espaço */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Confronte barra de rolagem */
+}
+
+/* Barra de Abas (Tab Bar) */
+.tab-bar {
+    height: 35px;
+    background-color: var(--bg-tabbar);
+    color: #999;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px solid #333;
+}
+
+/* Área de Código (Onde as páginas aparecem) */
+.code-area {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto; /* Adiciona barra de rolagem apenas aqui se o texto for grande */
+    background-color: var(--bg-app);
+}
+
+/* Botões da Sidebar (Estilo Arquivo) */
 .file-btn {
     background: none;
     border: none;
-    color: var(--text-color);
+    color: var(--text-main);
     width: 100%;
     text-align: left;
-    padding: 8px 15px;
+    padding: 8px 20px;
     cursor: pointer;
     font-family: inherit;
-    font-size: 14px;
-    display: block;
+    font-size: 13px;
+    transition: 0.2s;
 }
 
 .file-btn:hover, .file-btn.active {
-    background-color: var(--accent-color);
-    color: white;
+    background-color: #333; /* Fundo suave */
+    color: var(--string); /* Laranja cozy no hover */
 }
+
+.file-btn.active {
+    border-left: 2px solid var(--accent); /* Barrinha Zelda marrom */
+}
+
+/* Estilização Cozy para Código */
+.keyword { color: var(--keyword); font-weight: bold; }
+.string { color: var(--string); }
+.comment { color: var(--comment); font-style: italic; }
+
+.card {
+    background: rgba(139, 90, 43, 0.1); /* Marrom translúcido */
+    border-left: 4px solid var(--accent);
+    padding: 20px;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+/* Canvas do Rastro (Overlay) */
+#trailCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Não atrapalha cliques */
+    z-index: 5; /* Entre o fundo e o texto */
+}
+
+/* Lógica SPA: Esconder/Mostrar Páginas */
+.page { display: none; }
+.page.active { display: block; }

@@ -1,38 +1,40 @@
-// 1. LÓGICA DE NAVEGAÇÃO SPA
+// --- SISTEMA DE NAVEGAÇÃO SPA ---
 function navegar(idSecao) {
-    // Tocar som de clique
+    // 1. Tocar som de clique
     const clickSfx = document.getElementById('somClique');
-    clickSfx.currentTime = 0;
-    clickSfx.play();
+    if (clickSfx) {
+        clickSfx.currentTime = 0; // Reinicia o som
+        clickSfx.play().catch(() => console.log("Aguardando interação para som de clique."));
+    }
 
-    // Trocar Página (Seção)
+    // 2. Trocar Página (Seção)
+    // Esconde todas
     document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-    document.getElementById(idSecao).classList.add('active');
+    // Mostra a escolhida
+    const alvo = document.getElementById(idSecao);
+    if (alvo) alvo.classList.add('active');
 
-    // Atualizar Botão Ativo na Sidebar
+    // 3. Atualizar Botão Ativo na Sidebar
     document.querySelectorAll('.file-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById('btn-' + idSecao).classList.add('active');
+    const btnAtivo = document.getElementById('btn-' + idSecao);
+    if (btnAtivo) btnAtivo.classList.add('active');
 
-    // Atualizar Nome na Tab-Bar
-    const tabNames = {
-        home: 'welcome_pai.py',
-        historia: 'historia.lore',
-        lembrancas: 'lembrancas.log',
-        bencaos: 'bencaos.ccb',
-        carinho: 'carinho.py'
-    };
-    document.getElementById('tab-name').innerText = tabNames[idSecao];
+    // 4. Atualizar Nome na Tab-Bar (Welcome_pai.py, etc.)
+    // (Adicione a lógica para trocar o nome da tab aqui se desejar)
 }
 
-// 2. MÚSICA DE FUNDO (Inicia no primeiro clique)
+// --- SISTEMA DE ÁUDIO DE FUNDO (Inicia no primeiro clique) ---
 document.addEventListener('click', function iniciarMusica() {
     const bgm = document.getElementById('musicaFundo');
-    bgm.volume = 0.3;
-    bgm.play();
-    document.removeEventListener('click', iniciarMusica);
-}, { once: true });
+    if (bgm) {
+        bgm.volume = 0.3;
+        bgm.play().catch(() => console.log("Erro ao iniciar música de fundo. Verifique o arquivo."));
+        // Remove o evento para não tentar tocar toda vez que clicar
+        document.removeEventListener('click', iniciarMusica);
+    }
+}, { once: true }); // Executa apenas uma vez
 
-// 3. TRILHA DO MOUSE (CANVAS)
+// --- CÓDIGO DO CANVAS (TRILHA DO MOUSE - INALTERADO) ---
 const canvas = document.getElementById('trailCanvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -77,4 +79,6 @@ function animate() {
     }
     requestAnimationFrame(animate);
 }
+
+// Iniciar animação
 animate();
