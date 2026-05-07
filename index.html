@@ -2,45 +2,36 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dia das Mães - Um Presente de Amor</title>
+    <title>Feliz Aniversário, Pai!</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div class="grain-overlay"></div>
-
-    <main class="main-container">
-        <section class="hero-section">
-            <div class="logo-area">
-                <h2 class="sub-title">DIA DAS</h2>
-                <h1 class="main-title">MÃES</h1>
-                <p class="tagline">UM PRESENTE DE AMOR</p>
+    <nav class="sidebar">
+        <p>EXPLORER</p>
+        <a href="index.html" class="file active">index.html</a>
+        <a href="historia.html" class="file">historia.html</a>
+        <a href="lembrancas.html" class="file">lembrancas.html</a>
+        <a href="bencaos.html" class="file">bencaos.html</a>
+        <a href="carinho.html" class="file">carinho.html</a>
+    </nav>
+    <main class="content">
+        <div class="tab-bar">welcome_pai.py</div>
+        <section class="code-area">
+            <h1><span class="keyword">print</span>(<span class="string">"Feliz Aniversário, meu herói!"</span>)</h1>
+            <div class="card">
+                <p class="comment"># Inicializando sistema de gratidão...</p>
+                <p>Pai, este site foi "codado" com todo o carinho para celebrar a sua vida. Navegue pelos arquivos ao lado para ver as surpresas que preparamos.</p>
+                <p>Que Deus em Sua infinita graça te abençoe hoje e sempre!</p>
             </div>
         </section>
-
-        <nav class="game-menu">
-            <ul>
-                <li class="active"><span class="selector"></span> Lembranças</li>
-                <li><span class="selector"></span> Nova História</li>
-                <li><span class="selector"></span> Opções de Carinho</li>
-                <li><span class="selector"></span> Bênçãos (CCB)</li>
-            </ul>
-            <div class="menu-footer">
-                <span><b class="btn-icon">B</b> Voltar</span>
-                <span><b class="btn-icon">A</b> Escolher</span>
-            </div>
-        </nav>
-
-        <aside class="bible-quote">
-            <p>"A mulher virtuosa, quem a achará? O seu valor muito excede ao de rubis."</p>
-            <span>Provérbios 31:10</span>
-        </aside>
     </main>
-
-    <canvas id="trail-canvas"></canvas>
-
+    <canvas id="trailCanvas"></canvas>
     <script src="script.js"></script>
+    <div class="audio-control">
+    <button id="btnMusica">🎵 Play Music</button>
+    <audio id="musicaFundo" loop>
+        <source src="ambient.mp3" type="audio/mpeg">
+    </audio>
+</div>
 </body>
 </html>

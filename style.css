@@ -1,110 +1,104 @@
 :root {
-    --bg-dark: #1a1612;
-    --brown-primary: #4a3728;
-    --gold-soft: #c5a059;
-    --text-light: #eaddca;
-    --overlay-sepia: rgba(43, 30, 22, 0.6);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --bg-color: #2b1d16;
+    --sidebar-color: #1e140f;
+    --text-color: #d2b48c;
+    --accent-color: #8b4513;
+    --keyword-color: #cd853f;
+    --string-color: #deb887;
+    --comment-color: #6b4423;
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    font-family: 'Lora', serif;
-    overflow: hidden; /* Mantém a estética de "tela única" */
-    height: 100vh;
-}
-
-/* Fundo com Imagem e Filtro */
-.main-container {
-    height: 100vh;
-    background: linear-gradient(var(--overlay-sepia), var(--overlay-sepia)), 
-                url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
-    background-size: cover;
-    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Consolas', 'Courier New', monospace;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 50px;
+    height: 100vh;
+    overflow: hidden;
 }
 
-/* Efeito de Ruído/Grão */
-.grain-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('https://www.transparenttextures.com/patterns/p6.png');
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 10;
+/* Sidebar Estilo VS Code */
+.sidebar {
+    width: 200px;
+    background-color: var(--sidebar-color);
+    padding: 10px;
+    border-right: 1px solid var(--accent-color);
 }
 
-/* Tipografia */
-.main-title {
-    font-family: 'Cinzel', serif;
-    font-size: 8rem;
-    line-height: 0.8;
-    text-shadow: 2px 5px 15px rgba(0,0,0,0.7);
+.sidebar p {
+    font-size: 12px;
+    color: var(--comment-color);
+    margin-bottom: 20px;
 }
 
-.sub-title {
-    font-family: 'Cinzel', serif;
-    font-size: 2rem;
-    letter-spacing: 10px;
-    color: var(--gold-soft);
+.file {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    transition: 0.3s;
 }
 
-/* Menu de Jogo */
-.game-menu ul {
-    list-style: none;
-    text-transform: uppercase;
-    font-family: 'Cinzel', serif;
+.file:hover, .file.active {
+    background-color: var(--accent-color);
+    color: white;
 }
 
-.game-menu li {
-    font-size: 1.8rem;
+/* Área de Conteúdo */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-bar {
+    background-color: var(--sidebar-color);
+    padding: 10px 20px;
+    font-size: 12px;
+    border-bottom: 1px solid var(--accent-color);
+    color: var(--keyword-color);
+}
+
+.code-area {
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.keyword { color: var(--keyword-color); font-weight: bold; }
+.comment { color: var(--comment-color); font-style: italic; }
+
+.card {
+    background: rgba(139, 69, 19, 0.1);
+    border: 1px solid var(--accent-color);
+    padding: 20px;
+    border-radius: 8px;
     margin: 20px 0;
-    padding: 10px 40px;
+    line-height: 1.6;
+}
+
+.btn-cozy {
+    background-color: var(--sidebar-color);
+    color: var(--text-color);
+    border: 1px solid var(--accent-color);
+    padding: 10px 20px;
     cursor: pointer;
-    transition: all 0.3s;
-    background: linear-gradient(90deg, rgba(197, 160, 89, 0) 0%, rgba(197, 160, 89, 0.1) 100%);
+    margin: 5px;
+    font-family: inherit;
 }
 
-.game-menu li:hover, .game-menu li.active {
-    color: var(--gold-soft);
-    transform: translateX(10px);
-    background: linear-gradient(90deg, rgba(197, 160, 89, 0.2) 0%, rgba(197, 160, 89, 0) 100%);
+.btn-cozy:hover {
+    background-color: var(--keyword-color);
+    color: white;
 }
 
-.btn-icon {
-    border: 2px solid var(--text-light);
-    border-radius: 50%;
-    padding: 2px 8px;
-    font-size: 0.8rem;
-    margin: 0 5px;
-}
-
-/* Citação Bíblica */
-.bible-quote {
-    position: absolute;
-    bottom: 40px;
-    right: 60px;
-    max-width: 400px;
-    text-align: right;
-    font-style: italic;
-    opacity: 0.8;
-    border-right: 3px solid var(--gold-soft);
-    padding-right: 20px;
-}
-
-/* Canvas do Mouse */
-#trail-canvas {
+/* Canvas da Trilha do Mouse */
+#trailCanvas {
     position: fixed;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     pointer-events: none;
     z-index: 999;
 }
