@@ -2,38 +2,45 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Feliz Aniversário, Pai!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário, Pai! | VS Code System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="sidebar">
         <p>EXPLORER</p>
         <a href="index.html" class="file active">index.html</a>
-        <a href="historia.html" class="file">historia.html</a>
         <a href="lembrancas.html" class="file">lembrancas.html</a>
-        <a href="bencaos.html" class="file">bencaos.html</a>
+        <a href="bençaos.html" class="file">bencaos.html</a>
         <a href="carinho.html" class="file">carinho.html</a>
     </nav>
+
     <main class="content">
         <div class="tab-bar">welcome_pai.py</div>
+        
         <section class="code-area">
             <h1><span class="keyword">print</span>(<span class="string">"Feliz Aniversário, meu herói!"</span>)</h1>
+            
             <div class="card">
                 <p class="comment"># Inicializando sistema de gratidão...</p>
                 <p>Pai, este site foi "codado" com todo o carinho para celebrar a sua vida. Navegue pelos arquivos ao lado para ver as surpresas que preparamos.</p>
                 <p>Que Deus em Sua infinita graça te abençoe hoje e sempre!</p>
             </div>
+
+            <p class="comment" style="margin-top: 20px;">// Clique em qualquer lugar para ativar a trilha sonora...</p>
         </section>
     </main>
+
     <canvas id="trailCanvas"></canvas>
-    <script src="script.js"></script>
-    <div class="audio-control">
-    <button id="btnMusica">🎵 Play Music</button>
+
     <audio id="musicaFundo" loop>
         <source src="idoberg-cozy-lofi-beat-sunset-stars-253833.mp3" type="audio/mpeg">
     </audio>
 
-    <audio id="somClique" src="creatorshome-keyboard-click-327728.mp3"></audio>
-</div>
+    <audio id="somClique">
+        <source src="creatorshome-keyboard-click-327728.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
 </body>
 </html>

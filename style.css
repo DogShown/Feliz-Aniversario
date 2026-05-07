@@ -1,104 +1,77 @@
 :root {
-    --bg-color: #2b1d16;
-    --sidebar-color: #1e140f;
-    --text-color: #d2b48c;
-    --accent-color: #8b4513;
-    --keyword-color: #cd853f;
-    --string-color: #deb887;
-    --comment-color: #6b4423;
+    --bg-color: #2d241e;
+    --sidebar-color: #3c2f26;
+    --text-color: #e0c9a6;
+    --accent-color: #8b5e3c;
+    --gold: #d4af37;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Consolas', 'Courier New', monospace;
     background-color: var(--bg-color);
     color: var(--text-color);
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
     display: flex;
     height: 100vh;
-    overflow: hidden;
 }
 
-/* Sidebar Estilo VS Code */
+/* Sidebar estilo VS Code */
 .sidebar {
     width: 200px;
     background-color: var(--sidebar-color);
-    padding: 10px;
+    padding: 20px 10px;
     border-right: 1px solid var(--accent-color);
 }
 
-.sidebar p {
-    font-size: 12px;
-    color: var(--comment-color);
-    margin-bottom: 20px;
-}
-
-.file {
+.sidebar a {
     display: block;
-    padding: 5px 10px;
-    text-decoration: none;
     color: var(--text-color);
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
     font-size: 14px;
-    transition: 0.3s;
 }
 
-.file:hover, .file.active {
+.sidebar a:hover {
     background-color: var(--accent-color);
-    color: white;
 }
 
-/* Área de Conteúdo */
-.content {
+/* Conteúdo Principal */
+main {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.tab-bar {
-    background-color: var(--sidebar-color);
-    padding: 10px 20px;
-    font-size: 12px;
-    border-bottom: 1px solid var(--accent-color);
-    color: var(--keyword-color);
-}
-
-.code-area {
     padding: 40px;
     overflow-y: auto;
 }
 
-.keyword { color: var(--keyword-color); font-weight: bold; }
-.comment { color: var(--comment-color); font-style: italic; }
-
-.card {
-    background: rgba(139, 69, 19, 0.1);
-    border: 1px solid var(--accent-color);
+.card-mesclado {
+    background: rgba(60, 47, 38, 0.6);
+    border: 1px solid var(--gold);
     padding: 20px;
+    margin-bottom: 20px;
     border-radius: 8px;
-    margin: 20px 0;
-    line-height: 1.6;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
-.btn-cozy {
-    background-color: var(--sidebar-color);
-    color: var(--text-color);
-    border: 1px solid var(--accent-color);
-    padding: 10px 20px;
-    cursor: pointer;
-    margin: 5px;
-    font-family: inherit;
+.card-mesclado img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+    border-radius: 4px;
 }
 
-.btn-cozy:hover {
-    background-color: var(--keyword-color);
-    color: white;
-}
+h1 { color: var(--gold); border-bottom: 1px solid var(--gold); }
 
-/* Canvas da Trilha do Mouse */
-#trailCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* Efeito de brilho Zelda */
+.trail {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
     pointer-events: none;
-    z-index: 999;
+    box-shadow: 0 0 10px var(--gold);
 }

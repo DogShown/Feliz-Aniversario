@@ -1,3 +1,4 @@
+// --- CONFIGURAÇÃO DO CANVAS (TRILHA DO MOUSE) ---
 const canvas = document.getElementById('trailCanvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -17,7 +18,7 @@ class Particle {
         this.size = Math.random() * 5 + 1;
         this.speedX = Math.random() * 3 - 1.5;
         this.speedY = Math.random() * 3 - 1.5;
-        this.color = '#deb887';
+        this.color = '#deb887'; // Cor Cozy/Zelda
     }
     update() {
         this.x += this.speedX;
@@ -32,12 +33,14 @@ class Particle {
     }
 }
 
+// Evento de rastro do mouse
 window.addEventListener('mousemove', (e) => {
     for (let i = 0; i < 3; i++) {
         particles.push(new Particle(e.x, e.y));
     }
 });
 
+// Função de animação (Loop constante)
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particles.length; i++) {
@@ -49,41 +52,40 @@ function animate() {
         }
     }
     requestAnimationFrame(animate);
-    // Criar o objeto de áudio
-const somClique = new Audio('click.mp3');
-
-// Função para tocar o som
-function tocarSom() {
-    somClique.currentTime = 0; // Reinicia o som se clicar rápido
-    somClique.play();
 }
 
-// Exemplo: Aplicar a todos os botões do seu site
-document.querySelectorAll('button').forEach(botao => {
-    botao.addEventListener('click', tocarSom);
-    // 1. Referenciar o áudio
+// --- SISTEMA DE ÁUDIO (FORA DO LOOP DE ANIMAÇÃO) ---
+
+// 1. Música de Fundo (Inicia com o primeiro clique no site)
 const musica = document.getElementById('musicaFundo');
 
-// 2. Função para tocar a música
 function iniciarMusica() {
-    musica.volume = 0.4; // Define o volume (0.0 a 1.0)
-    musica.play();
-    
-    // Remove o evento após tocar a primeira vez para não reiniciar sempre
-    document.removeEventListener('click', iniciarMusica);
+    if (musica) {
+        musica.volume = 0.4;
+        musica.play().catch(e => console.log("Aguardando interação para áudio."));
+        // Remove o evento para não tentar tocar toda vez que clicar
+        document.removeEventListener('click', iniciarMusica);
+    }
 }
-
-// 3. Tocar quando o usuário clicar em qualquer parte do site
 document.addEventListener('click', iniciarMusica);
-// Seleciona o áudio e todos os botões
+
+// 2. Som de Clique nos Botões
+// Certifique-se de ter <audio id="somClique" src="..."></audio> no HTML
 const audioClique = document.getElementById('somClique');
 
-document.querySelectorAll('button').forEach(botao => {
-    botao.addEventListener('click', () => {
-        audioClique.currentTime = 0; // Reseta o som para tocar várias vezes seguidas
-        audioClique.play();          // Toca o som
-    });
-});
-});
+function tocarSomBotao() {
+    if (audioClique) {
+        audioClique.currentTime = 0;
+        audioClique.play();
+    }
 }
+
+// Aplica o som a todos os botões existentes e futuros
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON' || e.target.closest('a')) {
+        tocarSomBotao();
+    }
+});
+
+// Iniciar animação
 animate();
