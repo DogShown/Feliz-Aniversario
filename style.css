@@ -1,74 +1,153 @@
 :root {
-    --bg-color: #0d0d0d;
+    --bg-black: #050505;
     --card-bg: #1a1a2e;
     --primary-purple: #8a2be2;
     --text-white: #ffffff;
     --text-gray: #b3b3b3;
+    --neon-glow: 0 0 25px rgba(138, 43, 226, 0.7);
 }
 
 body {
-    background-color: var(--bg-color);
+    background-color: var(--bg-black);
+    /* Efeito de Estrelas */
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 20px),
+        radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px);
+    background-size: 400px 400px, 250px 250px;
+    background-position: 0 0, 50px 100px;
+    
     color: var(--text-white);
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     overflow: hidden;
+    transition: background 1.5s ease;
 }
 
-.container { display: flex; align-items: center; gap: 60px; }
+/* Quando a luz acende, o espaço ganha cor (Nebulosa) */
+body.space-active {
+    background-color: #0d051a;
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+        radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 20px),
+        radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px);
+}
 
-/* LUMINÁRIA */
-.instruction { font-size: 0.7rem; color: #555; transition: 0.3s; }
-.lamp-container { position: relative; cursor: pointer; z-index: 10; }
+.container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+/* --- LUMINÁRIA --- */
+.instruction {
+    font-size: 0.7rem;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    transition: 0.5s;
+}
+
+.lamp-container {
+    position: relative;
+    cursor: pointer;
+    z-index: 10;
+}
+
 .lamp {
-    width: 110px; height: 130px; background: #222;
+    width: 100px;
+    height: 120px;
+    background: #222;
     clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-    transition: 0.5s; position: relative;
+    position: relative;
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.pull-string { width: 2px; height: 50px; background: #444; position: absolute; bottom: -50px; left: 50%; }
+
+.pull-string {
+    width: 2px;
+    height: 50px;
+    background: #444;
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+}
+
 .light-glow {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 300px; height: 300px; background: radial-gradient(circle, rgba(138, 43, 226, 0) 0%, transparent 70%);
-    transition: 0.5s; pointer-events: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0) 0%, transparent 70%);
+    transition: 0.6s;
+    pointer-events: none;
 }
 
-/* ESTADO ACESO */
-.lamp-container.active .lamp { background: linear-gradient(to bottom, #8a2be2, #d896ff); box-shadow: 0 0 30px var(--primary-purple); }
-.lamp-container.active .light-glow { background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, transparent 70%); }
+/* --- ESTADO ATIVO --- */
+.lamp-container.active .lamp {
+    background: linear-gradient(to bottom, #8a2be2, #d896ff);
+    box-shadow: var(--neon-glow);
+}
 
-/* CARTÃO (ESCONDIDO POR PADRÃO) */
+.lamp-container.active .light-glow {
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.5) 0%, transparent 70%);
+}
+
+/* --- CARTÃO --- */
 .card {
     background-color: var(--card-bg);
-    padding: 40px; border-radius: 24px; border: 1px solid #333;
-    width: 350px; text-align: center;
-    opacity: 0; /* Invisível */
-    transform: translateX(20px);
-    pointer-events: none; /* Não clicável */
-    transition: all 0.8s ease;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid #333;
+    width: 350px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Revela o cartão quando a lâmpada estiver ativa */
 .lamp-container.active ~ .card {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
     pointer-events: auto;
 }
 
-.brand { font-weight: bold; margin-bottom: 20px; }
-.brand .dot { display: inline-block; width: 8px; height: 8px; background: var(--primary-purple); border-radius: 50%; }
-.subtitle { font-size: 0.6rem; color: var(--text-gray); letter-spacing: 2px; }
+.brand { font-weight: bold; margin-bottom: 25px; }
+.brand .dot { display: inline-block; width: 8px; height: 8px; background: var(--primary-purple); border-radius: 50%; margin-right: 5px; }
+.subtitle { font-size: 0.65rem; color: var(--text-gray); letter-spacing: 3px; }
 
 .btn-primary {
-    background-color: var(--primary-purple); color: white; border: none;
-    padding: 15px; width: 100%; border-radius: 10px; font-weight: bold;
-    cursor: pointer; margin-top: 20px; transition: 0.3s;
+    background-color: var(--primary-purple);
+    color: white;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
 }
 
+.btn-primary:hover {
+    background-color: #9d4edd;
+    box-shadow: var(--neon-glow);
+    transform: scale(1.02);
+}
+
+/* ÁREA DA SURPRESA */
 .hidden { display: none; }
-.visible { display: block; animation: fadeIn 0.5s forwards; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.gift-box { font-size: 3rem; margin: 15px 0; animation: bounce 2s infinite; }
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.visible { display: block; animation: zoomIn 0.5s ease forwards; }
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.gift-box { font-size: 3.5rem; margin: 20px 0; animation: bounce 2s infinite; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }

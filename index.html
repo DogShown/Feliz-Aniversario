@@ -3,37 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surpresa de Aniversário!</title>
+    <title>Surpresa Espacial de Aniversário!</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="decor-side">
-            <p id="hint" class="instruction">Acenda a luz para ver a surpresa</p>
+            <p id="hint" class="instruction">Toque para iluminar o universo</p>
             <div class="lamp-container" id="lampSwitch">
-                <div class="lamp"><div class="pull-string"></div></div>
+                <div class="lamp">
+                    <div class="pull-string"></div>
+                </div>
                 <div class="light-glow"></div>
             </div>
         </div>
 
         <div class="card" id="mainCard">
             <div class="brand">
-                <span class="dot"></span> PARA
-                <p class="subtitle">BENEDITO</p>
+                <span class="dot"></span> FEZAcademy
+                <p class="subtitle">GALAXY EDITION</p>
             </div>
             
-            <h1>Feliz Aniversário!</h1>
-            <p class="message" id="message">Agora que você iluminou o dia, abra seu presente!</p>
+            <h1 id="title">Feliz Aniversário!</h1>
+            <p class="message" id="message">O universo reservou algo especial para você hoje. Clique abaixo!</p>
             
             <div id="surpriseArea" class="hidden">
                 <div class="gift-box">🎁</div>
-                <p class="special-text">Que seu novo ciclo seja incrível e cheio de conquistas! ✨</p>
+                <p class="special-text">Que seu novo ciclo seja repleto de luz, estrelas e códigos sem erros! ✨</p>
             </div>
 
             <button class="btn-primary" id="btnPresente">Abrir Presente 🎁</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
