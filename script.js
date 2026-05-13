@@ -1,36 +1,37 @@
 const lamp = document.getElementById('lampSwitch');
 const btn = document.getElementById('btnPresente');
 const surprise = document.getElementById('surpriseArea');
-const card = document.getElementById('mainCard');
 const message = document.getElementById('message');
+const hint = document.getElementById('hint');
 
-// 1. Lógica da Lâmpada (Igual ao vídeo)
+// Lógica de ligar/desligar
 lamp.addEventListener('click', () => {
     lamp.classList.toggle('active');
-    // Efeito sonoro básico de clique (opcional)
-    const clickAudio = new Audio('https://www.soundjay.com/buttons/sounds/button-20.mp3');
-    clickAudio.volume = 0.5;
-    clickAudio.play().catch(() => {}); // catch para evitar erro se o navegador bloquear
+    
+    if (lamp.classList.contains('active')) {
+        hint.innerText = "A luz se fez!";
+        hint.style.color = "#8a2be2";
+    } else {
+        hint.innerText = "Acenda a luz para ver a surpresa";
+        hint.style.color = "#555";
+        // Opcional: fechar a surpresa se apagar a luz
+        surprise.classList.add('hidden');
+        btn.style.display = 'block';
+        message.style.display = 'block';
+    }
 });
 
-// 2. Lógica do Presente Especial
+// Lógica do Presente
 btn.addEventListener('click', () => {
-    // Disparar Confetes
     confetti({
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#8a2be2', '#ffffff', '#ffd700']
+        colors: ['#8a2be2', '#ffffff']
     });
 
-    // Mostrar a surpresa
     btn.style.display = 'none';
     message.style.display = 'none';
     surprise.classList.remove('hidden');
     surprise.classList.add('visible');
-    
-    // Deixar o cartão "especial"
-    card.style.borderColor = '#8a2be2';
-    card.style.transform = 'scale(1.05)';
-    card.style.boxShadow = '0 0 40px rgba(138, 43, 226, 0.3)';
 });
