@@ -3,37 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Aniversário, Pai</title>
+    <title>Feliz Aniversário!</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-
-    <canvas id="trailCanvas"></canvas>
-
-    <main class="main-container">
-        <div class="glass-content">
-            <h1 class="title">Além do Tempo</h1>
-            
-            <div class="message-area">
-                <p class="phrase">Pai, sua jornada é o nosso maior tesouro.</p>
-                <p class="phrase">Um rei que governa com amor, honra e fé.</p>
-                <p class="phrase">Que o Senhor te abençoe e te guarde em cada novo passo.</p>
-                <p class="phrase">Feliz aniversário, meu herói!</p>
-                
-                <div class="gallery">
-                    <img src="foto1.jpg" alt="Memória" class="mini-photo">
-                    <img src="foto2.jpg" alt="Memória" class="mini-photo">
+    <div class="container">
+        <div class="decor-side">
+            <p class="instruction">Toque para ligar</p>
+            <div class="lamp-container" id="lampSwitch">
+                <div class="lamp">
+                    <div class="pull-string"></div>
                 </div>
+                <div class="light-glow"></div>
+            </div>
+        </div>
+
+        <div class="card" id="mainCard">
+            <div class="brand">
+                <span class="dot"></span> FEZAcademy
+                <p class="subtitle">SPECIAL EDITION</p>
+            </div>
+            
+            <h1 id="title">Feliz Aniversário!</h1>
+            <p class="message" id="message">Clique no botão abaixo para liberar sua surpresa de aniversário.</p>
+            
+            <div id="surpriseArea" class="hidden">
+                <div class="gift-box">🎁</div>
+                <p class="special-text">Você é uma pessoa incrível! Que seu código nunca tenha bugs e sua vida tenha muito brilho! ✨</p>
             </div>
 
-            <footer class="footer-note">
-                ... silêncio e gratidão ...
-            </footer>
+            <button class="btn-primary" id="btnPresente">Abrir Presente 🎁</button>
+            
+            <div class="footer-links">
+                <p>Feito com ❤️ por [Seu Nome]</p>
+            </div>
         </div>
-    </main>
-
-    <audio id="musicaFundo" loop src="idoberg-cozy-lofi-beat-sunset-stars-253833.mp3"></audio>
-    <audio id="somClique" src="creatorshome-keyboard-click-327728.mp3"></audio>
+    </div>
 
     <script src="script.js"></script>
 </body>

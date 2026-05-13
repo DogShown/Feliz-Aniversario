@@ -1,58 +1,36 @@
-// Áudio de Fundo
-document.addEventListener('click', () => {
-    const bgm = document.getElementById('musicaFundo');
-    if (bgm.paused) {
-        bgm.volume = 0.3;
-        bgm.play();
-    }
-}, { once: true });
+const lamp = document.getElementById('lampSwitch');
+const btn = document.getElementById('btnPresente');
+const surprise = document.getElementById('surpriseArea');
+const card = document.getElementById('mainCard');
+const message = document.getElementById('message');
 
-// Sistema de Partículas (Poeira Estelar)
-const canvas = document.getElementById('trailCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-class Particle {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.size = Math.random() * 2;
-        this.opacity = 1;
-        this.speedX = (Math.random() - 0.5) * 1;
-        this.speedY = (Math.random() - 0.5) * 1;
-    }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        this.opacity -= 0.005;
-    }
-    draw() {
-        ctx.fillStyle = `rgba(222, 184, 135, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-window.addEventListener('mousemove', (e) => {
-    for (let i = 0; i < 2; i++) {
-        particles.push(new Particle(e.x, e.y));
-    }
+// 1. Lógica da Lâmpada (Igual ao vídeo)
+lamp.addEventListener('click', () => {
+    lamp.classList.toggle('active');
+    // Efeito sonoro básico de clique (opcional)
+    const clickAudio = new Audio('https://www.soundjay.com/buttons/sounds/button-20.mp3');
+    clickAudio.volume = 0.5;
+    clickAudio.play().catch(() => {}); // catch para evitar erro se o navegador bloquear
 });
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-        if (particles[i].opacity <= 0) {
-            particles.splice(i, 1);
-            i--;
-        }
-    }
-    requestAnimationFrame(animate);
-}
-animate();
+// 2. Lógica do Presente Especial
+btn.addEventListener('click', () => {
+    // Disparar Confetes
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#8a2be2', '#ffffff', '#ffd700']
+    });
+
+    // Mostrar a surpresa
+    btn.style.display = 'none';
+    message.style.display = 'none';
+    surprise.classList.remove('hidden');
+    surprise.classList.add('visible');
+    
+    // Deixar o cartão "especial"
+    card.style.borderColor = '#8a2be2';
+    card.style.transform = 'scale(1.05)';
+    card.style.boxShadow = '0 0 40px rgba(138, 43, 226, 0.3)';
+});
